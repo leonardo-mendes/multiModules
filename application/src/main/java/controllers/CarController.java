@@ -8,7 +8,7 @@ import services.CarService;
 
 import java.util.List;
 
-@RestController(value = "/api")
+@RestController(value = "/car")
 public class CarController {
 
     @Autowired
