@@ -7,9 +7,9 @@
     <artifactId>multipleModules</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
+        <module>domain</module>
         <module>application</module>
         <module>service</module>
-        <module>domain</module>
         <module>repository</module>
     </modules>
     <packaging>pom</packaging>
@@ -35,10 +35,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>
