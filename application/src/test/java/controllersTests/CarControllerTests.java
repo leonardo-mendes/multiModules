@@ -4,18 +4,24 @@ import com.google.gson.Gson;
 import configTests.CarControllerConfig;
 import controllers.CarController;
 import domains.Car;
+import domains.request.CarRequest;
+import domains.response.CarResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import services.CarService;
+import utilsTests.UtilTest;
 
 import java.util.Arrays;
 
@@ -25,18 +31,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = CarControllerConfig.class)
-public class CarControllerTests {
+public class CarControllerTests extends UtilTest {
 
     private static final String API_URL = "/car";
     private Gson gson;
     private MockMvc mockMvc;
 
-    private Car buildValidCar() {
-        return new Car("Valid Car");
-    }
-
     @InjectMocks
     private CarController carController;
+
+    @Mock
+    private ModelMapper modelMapper;
 
     @Mock
     private CarService carService;
@@ -45,12 +50,13 @@ public class CarControllerTests {
     public void setUp() {
         gson = new Gson();
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(carController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(carController,modelMapper).build();
     }
 
     @Test
     public void ShouldListAllCars() throws Exception {
         when(carService.findAll()).thenReturn(Arrays.asList(buildValidCar()));
+        when(modelMapper.map(any(), any())).thenReturn(buildValidCarResponse());
         mockMvc.perform(get(API_URL)).andExpect(status().isOk());
         verify(carService, times(1)).findAll();
     }
@@ -58,6 +64,7 @@ public class CarControllerTests {
     @Test
     public void ShouldFindACarById() throws Exception {
         when(carService.findById(anyInt())).thenReturn(buildValidCar());
+        when(modelMapper.map(any(), any())).thenReturn(buildValidCarResponse());
         mockMvc.perform(get(API_URL + "/{id}", 1)).andExpect(status().isOk());
         verify(carService, times(1)).findById(anyInt());
     }

@@ -24,6 +24,7 @@
         <mockito>1.9.5</mockito>
         <junit>4.12</junit>
         <gson>2.7</gson>
+        <model.mapper>0.7.4</model.mapper>
     </properties>
 
     <parent>
@@ -64,6 +65,11 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>${gson}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>${model.mapper}</version>
         </dependency>
     </dependencies>
 
