@@ -22,7 +22,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <mockito>1.9.5</mockito>
-        <junit>4.2</junit>
+        <junit>4.12</junit>
+        <gson>2.7</gson>
     </properties>
 
     <parent>
@@ -58,6 +59,11 @@
             <artifactId>junit</artifactId>
             <version>${junit}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${gson}</version>
         </dependency>
     </dependencies>
 

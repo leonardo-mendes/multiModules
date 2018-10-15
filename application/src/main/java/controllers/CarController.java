@@ -37,7 +37,7 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Car insert(@PathVariable Car car){
+    public Car insert(@RequestBody Car car){
         return carService.insert(car);
     }
 
