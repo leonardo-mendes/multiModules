@@ -29,10 +29,10 @@ public class CarController {
     }
 
     @PutMapping
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Car update(@PathVariable Car car){
-        return carService.update(car);
+    public Car update(@PathVariable Integer id, @RequestBody Car car){
+        return carService.update(id, car);
     }
 
     @PostMapping
@@ -42,7 +42,7 @@ public class CarController {
     }
 
     @DeleteMapping
-    @RequestMapping(value = "/{id}")
+    @RequestMapping(value = "/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Integer id){
         carService.delete(id);
