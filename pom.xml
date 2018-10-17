@@ -25,6 +25,7 @@
         <junit>4.12</junit>
         <gson>2.7</gson>
         <model.mapper>0.7.4</model.mapper>
+        <rabbit>4.0.0</rabbit>
     </properties>
 
     <parent>
@@ -89,6 +90,12 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
-    </dependencies>
 
+        <!-- RabbitMQ Dependency -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>${rabbit}</version>
+        </dependency>
+    </dependencies>
 </project>
