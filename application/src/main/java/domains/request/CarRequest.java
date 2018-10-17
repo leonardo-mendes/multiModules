@@ -1,9 +1,12 @@
 package domains.request;
 
+import javax.validation.constraints.NotNull;
+
 public class CarRequest {
 
     private Integer id;
 
+    @NotNull
     private String name;
 
     public CarRequest() {

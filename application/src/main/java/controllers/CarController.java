@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import services.CarService;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public CarResponse insert(@RequestBody CarRequest carRequest) {
+    public CarResponse insert(@Valid @RequestBody CarRequest carRequest) {
         return modelMapper.map(carService.insert(modelMapper.map(carRequest, Car.class)), CarResponse.class);
     }
 
