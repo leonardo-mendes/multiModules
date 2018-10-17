@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import services.CarService;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 @RestController
 @RequestMapping(value = "/car")
@@ -48,7 +50,7 @@ public class CarController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public CarResponse insert(@Valid @RequestBody CarRequest carRequest) {
+    public CarResponse insert(@Valid @RequestBody CarRequest carRequest) throws IOException, TimeoutException {
         return modelMapper.map(carService.insert(modelMapper.map(carRequest, Car.class)), CarResponse.class);
     }
 

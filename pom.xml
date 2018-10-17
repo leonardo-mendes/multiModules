@@ -25,7 +25,7 @@
         <junit>4.12</junit>
         <gson>2.7</gson>
         <model.mapper>0.7.4</model.mapper>
-        <rabbit>4.0.0</rabbit>
+        <rabbit>5.4.3</rabbit>
     </properties>
 
     <parent>

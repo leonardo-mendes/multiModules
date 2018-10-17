@@ -10,11 +10,14 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import repositories.CarRepository;
+import services.CarSender;
 import services.CarService;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -28,6 +31,8 @@ public class CarServiceTest {
     private CarService carService;
     @Mock
     private CarRepository carRepository;
+    @Mock
+    private CarSender carSender;
 
     private Optional<Car> buildValidCar() {
         return Optional.of(new Car("Valid Car"));
@@ -61,15 +66,16 @@ public class CarServiceTest {
     }
 
     @Test
-    public void ShouldInsertACar() {
+    public void ShouldInsertACar() throws IOException, TimeoutException {
         when(carRepository.save(any())).thenReturn(buildValidCar().get());
+        doNothing().when(carSender).send(anyString());
         Car car = carService.insert(buildValidCar().get());
         assertEquals(car.getName(), buildValidCar().get().getName());
         verify(carRepository, times(1)).save(any());
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void ShouldNotInsertACar() {
+    public void ShouldNotInsertACar() throws IOException, TimeoutException {
         carService.insert(null);
     }
 

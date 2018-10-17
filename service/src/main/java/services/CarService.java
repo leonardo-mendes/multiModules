@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.CarRepository;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeoutException;
 
 @Service
 public class CarService {
@@ -15,15 +17,19 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
+    @Autowired
+    private CarSender carSender;
+
     public List<Car> findAll() {
         return carRepository.findAll();
     }
 
-    public Car insert(Car car) {
+    public Car insert(Car car) throws IOException, TimeoutException {
         if(car == null){
             throw new IllegalArgumentException("The request is invalid!");
         }
 
+        carSender.send(car.getName());
         return carRepository.save(car);
     }
 
