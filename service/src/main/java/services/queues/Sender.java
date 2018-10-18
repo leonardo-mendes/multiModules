@@ -1,4 +1,4 @@
-package services;
+package services.queues;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 @Service
-public class CarSender {
+public class Sender {
 
     @Autowired
     ConnectionFactory connectionFactory;

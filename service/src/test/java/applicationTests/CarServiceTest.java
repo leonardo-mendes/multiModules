@@ -10,7 +10,7 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import repositories.CarRepository;
-import services.CarSender;
+import services.queues.Sender;
 import services.CarService;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class CarServiceTest {
     @Mock
     private CarRepository carRepository;
     @Mock
-    private CarSender carSender;
+    private Sender sender;
 
     private Optional<Car> buildValidCar() {
         return Optional.of(new Car("Valid Car"));
@@ -68,7 +68,7 @@ public class CarServiceTest {
     @Test
     public void ShouldInsertACar() throws IOException, TimeoutException {
         when(carRepository.save(any())).thenReturn(buildValidCar().get());
-        doNothing().when(carSender).send(anyString());
+        doNothing().when(sender).send(anyString());
         Car car = carService.insert(buildValidCar().get());
         assertEquals(car.getName(), buildValidCar().get().getName());
         verify(carRepository, times(1)).save(any());

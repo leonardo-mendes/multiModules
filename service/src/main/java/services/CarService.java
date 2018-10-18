@@ -5,6 +5,7 @@ import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.CarRepository;
+import services.queues.Sender;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +19,7 @@ public class CarService {
     private CarRepository carRepository;
 
     @Autowired
-    private CarSender carSender;
+    private Sender sender;
 
     public List<Car> findAll() {
         return carRepository.findAll();
@@ -29,7 +30,7 @@ public class CarService {
             throw new IllegalArgumentException("The request is invalid!");
         }
 
-        carSender.send(car.getName());
+        sender.send(car.getName());
         return carRepository.save(car);
     }
 

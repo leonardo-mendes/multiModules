@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitConfig {
 
     // https://www.rabbitmq.com/api-guide.html
+    // https://www.rabbitmq.com/tutorials/tutorial-one-java.html
 
     @Value("${spring.rabbitmq.host}")
     private String host;
