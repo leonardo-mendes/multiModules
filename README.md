@@ -1,6 +1,5 @@
-[![Build Status](https://travis-ci.org/leonardo-mendes/multiModules.svg?branch=master)](https://travis-ci.org/leonardo-mendes/multiModules)
+## Welcome to MultiModules Repository!  [![Build Status](https://travis-ci.org/leonardo-mendes/multiModules.svg?branch=master)](https://travis-ci.org/leonardo-mendes/multiModules) [![codecov](https://codecov.io/gh/leonardo-mendes/multiModules/branch/master/graph/badge.svg)](https://codecov.io/gh/leonardo-mendes/multiModules)
 
-## Welcome to MultiModules Repository!
 
 This is a simple application, exclusive for studies about some Spring/Java features.
 
