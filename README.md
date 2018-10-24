@@ -7,7 +7,7 @@ This is a simple application, exclusive for studies about some Spring/Java featu
 ##### Implemented resources:
  - Multiple Modules.
  - Maven.
- - Rabbit MQ ([Branch](https://github.com/leonardo-mendes/multiModules/tree/rabbit_config)). 
+ - Rabbit MQ.
  - TDD.
  - CI with Travis.
  
